@@ -12,30 +12,4 @@
     <p>Navbar userplatform</p>
   </header>
 
-  <main>
-    <h1>Autentificare</h1>
-
-    <form action="login.php" method="post">
-      <div>
-        <label for="login">Username sau email</label>
-        <input type="text" id="login" name="login" required>
-      </div>
-
-      <div>
-        <label for="password">Parola</label>
-        <input type="password" id="password" name="password" required>
-      </div>
-
-      <button type="submit">Conectare</button>
-    </form>
-  </main>
-
-  <aside>
-    <p>Link-uri utile</p>
-  </aside>
-
-  <footer>
-    <p>userplatform</p>
-  </footer>
-</body>
-</html>
+  
