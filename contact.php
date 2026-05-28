@@ -12,40 +12,4 @@
     <p>Navbar userplatform</p>
   </header>
 
-  <main>
-    <h1>Contact</h1>
-
-    <form action="contact.php" method="post">
-      <div>
-        <label for="name">Nume</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-
-      <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-
-      <div>
-        <label for="subject">Subiect</label>
-        <input type="text" id="subject" name="subject" required>
-      </div>
-
-      <div>
-        <label for="message">Mesaj</label>
-        <textarea id="message" name="message" rows="6" required></textarea>
-      </div>
-
-      <button type="submit">Trimite mesaj</button>
-    </form>
-  </main>
-
-  <aside>
-    <p>Informatii contact</p>
-  </aside>
-
-  <footer>
-    <p>userplatform</p>
-  </footer>
-</body>
-</html>
+  

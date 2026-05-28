@@ -8,21 +8,9 @@
   <script src="js/script.js"></script>
 </head>
 <body>
-  <header>
-    <p>userplatform</p>
-  </header>
-
-  <main>
+  <main class="container">
     <h1>Dashboard</h1>
-    <p>Aici vor fi tab-urile Feed meu, Creeaza post si Statistici karma</p>
+    <p>Pagina de test pentru functionalitati viitoare.</p>
   </main>
-
-  <aside>
-    <p>Panou lateral dashboard</p>
-  </aside>
-
-  <footer>
-    <p>userplatform</p>
-  </footer>
 </body>
 </html>
