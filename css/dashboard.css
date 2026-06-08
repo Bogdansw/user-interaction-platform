@@ -666,3 +666,35 @@
     overflow: visible;
   }
 }
+
+/* Flat UI pass */
+.dashboard-body *,
+.dashboard-body *::before,
+.dashboard-body *::after {
+  box-shadow: none !important;
+}
+
+.nav-item,
+.server-item,
+.icon-button,
+.search-field input,
+.sort-tab,
+.post-card,
+.panel,
+.join-btn {
+  border-radius: 6px;
+}
+
+.post-card,
+.panel {
+  background: #11161f;
+}
+
+.nav-item.active,
+.nav-item:hover {
+  background: #1b2230;
+}
+
+.join-btn {
+  background: #e8a94a;
+}

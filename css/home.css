@@ -222,3 +222,22 @@
     align-items: flex-start;
   }
 }
+
+/* Flat UI pass */
+.hero-card,
+.feature-card,
+.cta-inner,
+.main-nav a {
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.hero-card,
+.feature-card,
+.cta-inner {
+  background: #11161f;
+}
+
+.main-nav a.active {
+  background: #1b2230;
+}
