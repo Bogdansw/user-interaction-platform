@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -7,7 +5,7 @@
 }
 
 body {
-	font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 	font-size: 14px;
 	font-weight: 400;
 	background: #0f1117;
@@ -46,15 +44,32 @@ button {
 	font-size: 14px;
 	font-weight: 600;
 	cursor: pointer;
-	box-shadow: none;
 }
 
 .btn.primary {
 	background: #e8a94a;
 	border-color: #e8a94a;
 	color: #1a1200;
-	box-shadow: none;
-	border: none;
+}
+
+.btn.primary:hover {
+	background: #d4983a;
+	border-color: #d4983a;
+}
+
+.btn.danger {
+	background: rgba(248, 81, 73, 0.12);
+	border-color: rgba(248, 81, 73, 0.32);
+	color: #f4b6b1;
+}
+
+.btn.danger:hover {
+	background: rgba(248, 81, 73, 0.18);
+	border-color: rgba(248, 81, 73, 0.45);
+}
+
+.btn.ghost:hover {
+	background: #1c2233;
 }
 
 .btn.ghost {
@@ -66,4 +81,192 @@ button {
 .link-btn {
 	color: #e8a94a;
 	font-weight: 600;
+}
+
+.notice {
+	margin: 12px 0 16px;
+	padding: 10px 12px;
+	border-radius: 10px;
+	border: 1px solid #252d40;
+	background: #1c2233;
+	color: #d4d9ec;
+	max-width: 480px;
+}
+
+.notice.success {
+	border-color: rgba(46, 160, 67, 0.5);
+	color: #b7e3c0;
+}
+
+.notice.error {
+	border-color: rgba(248, 81, 73, 0.5);
+	color: #f4b6b1;
+}
+
+.profile-page {
+	padding: 32px 0 64px;
+}
+
+.profile-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	margin-bottom: 24px;
+}
+
+.profile-actions {
+	display: flex;
+	gap: 12px;
+}
+
+.card {
+	background: #1c2233;
+	border: 1px solid #252d40;
+	border-radius: 12px;
+	padding: 16px;
+	margin-bottom: 16px;
+}
+
+.card h2 {
+	font-size: 16px;
+	color: #ffffff;
+	margin-bottom: 12px;
+}
+
+.profile-row {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 8px 0;
+	border-bottom: 1px solid #252d40;
+}
+
+.profile-row:last-child {
+	border-bottom: none;
+}
+
+.label {
+	color: #8b92a8;
+	font-size: 13px;
+}
+
+.value {
+	color: #d4d9ec;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.stats-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	gap: 12px;
+}
+
+.stat {
+	background: #161b27;
+	border: 1px solid #252d40;
+	border-radius: 10px;
+	padding: 12px;
+}
+
+.stat-value {
+	font-size: 18px;
+	font-weight: 600;
+	color: #ffffff;
+	display: block;
+}
+
+.stat-label {
+	color: #8b92a8;
+	font-size: 12px;
+}
+
+.data-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: grid;
+	gap: 12px;
+}
+
+.data-list li {
+	border: 1px solid #252d40;
+	border-radius: 10px;
+	padding: 12px;
+	background: #161b27;
+}
+
+.list-title {
+	font-size: 14px;
+	font-weight: 600;
+	color: #eef0f8;
+	margin-bottom: 4px;
+}
+
+.list-meta {
+	font-size: 12px;
+	color: #5a6278;
+	margin-bottom: 8px;
+}
+
+.list-body {
+	font-size: 13px;
+	color: #8b92a8;
+	line-height: 1.5;
+}
+
+.muted {
+	color: #8b92a8;
+}
+
+/* Flat UI pass */
+.btn,
+.notice,
+.card,
+.stat,
+.data-list li {
+	border-radius: 6px;
+	box-shadow: none;
+}
+
+.btn {
+	height: 38px;
+	border-color: #2a3245;
+	background: #161b27;
+	transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.btn:hover {
+	background: #1b2130;
+}
+
+.btn.primary {
+	background: #e8a94a;
+	border-color: #e8a94a;
+	color: #11151d;
+}
+
+.btn.primary:hover {
+	background: #d99a3d;
+	border-color: #d99a3d;
+}
+
+.btn.ghost {
+	background: transparent;
+}
+
+.btn.ghost:hover {
+	background: #161b27;
+}
+
+.notice,
+.card {
+	background: #161b27;
+	border-color: #252d40;
+}
+
+.stat,
+.data-list li {
+	background: #111722;
 }
