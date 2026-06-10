@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			guestBrowsing: 'Navigare ca oaspete',
 			home: 'Acasa',
 			hot: 'Hot',
+			info: 'Info',
 			join: 'Alatura-te',
 			joinLoginRequired: 'Autentifica-te pentru a te alatura',
 			login: 'Autentificare',
@@ -57,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			guestBrowsing: 'Browsing as guest',
 			home: 'Home',
 			hot: 'Hot',
+			info: 'Info',
 			join: 'Join',
 			joinLoginRequired: 'Sign in to join',
 			login: 'Sign in',
@@ -101,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			guestBrowsing: 'Просмотр как гость',
 			home: 'Главная',
 			hot: 'Горячее',
+			info: 'Инфо',
 			join: 'Вступить',
 			joinLoginRequired: 'Войдите, чтобы вступить',
 			login: 'Войти',
@@ -302,6 +305,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const searchInput = document.querySelector('[data-server-search]') || document.querySelector('#server-search');
 	const serverList = document.querySelector('[data-server-list]') || document.querySelector('#server-list');
+	const postCards = Array.from(document.querySelectorAll('[data-post-title]'));
+
+	const applyPostSearch = (query) => {
+		const normalizedQuery = query.trim().toLowerCase();
+		let firstMatch = null;
+
+		postCards.forEach((post) => {
+			const title = (post.getAttribute('data-post-title') || '').toLowerCase();
+			const isMatch = normalizedQuery !== '' && title.includes(normalizedQuery);
+			post.classList.toggle('post-card--search-match', isMatch);
+			if (isMatch && !firstMatch) {
+				firstMatch = post;
+			}
+		});
+
+		return firstMatch;
+	};
+
+	const goToPostSearchResult = (query) => {
+		const firstMatch = applyPostSearch(query);
+		if (firstMatch) {
+			firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			window.history.replaceState(null, '', `#${firstMatch.id}`);
+			return;
+		}
+
+		if (query.trim() !== '' && postCards.length === 0) {
+			window.location.href = `index.php?search=${encodeURIComponent(query.trim())}`;
+		}
+	};
 
 	if (searchInput && serverList && !searchInput.disabled) {
 		const serverItems = Array.from(serverList.querySelectorAll('[data-server-name]'));
@@ -312,6 +345,31 @@ document.addEventListener('DOMContentLoaded', () => {
 				const name = (item.getAttribute('data-server-name') || '').toLowerCase();
 				item.style.display = name.includes(query) ? '' : 'none';
 			});
+		});
+	}
+
+	if (searchInput && !searchInput.disabled) {
+		const params = new URLSearchParams(window.location.search);
+		const initialSearch = params.get('search') || '';
+		if (initialSearch !== '') {
+			searchInput.value = initialSearch;
+			const firstMatch = applyPostSearch(initialSearch);
+			if (firstMatch) {
+				window.setTimeout(() => {
+					firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+				}, 80);
+			}
+		}
+
+		searchInput.addEventListener('input', () => {
+			applyPostSearch(searchInput.value);
+		});
+
+		searchInput.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter') {
+				event.preventDefault();
+				goToPostSearchResult(searchInput.value);
+			}
 		});
 	}
 
@@ -385,6 +443,17 @@ document.addEventListener('DOMContentLoaded', () => {
 			} catch (error) {
 				// The sidebar still changes for the current page when storage is unavailable.
 			}
+		});
+	}
+
+	const infoToggle = document.querySelector('[data-info-toggle]');
+	const infoMenu = document.querySelector('[data-info-menu]');
+	if (infoToggle && infoMenu) {
+		infoToggle.addEventListener('click', () => {
+			const isOpen = !infoMenu.hidden;
+			infoMenu.hidden = isOpen;
+			infoToggle.setAttribute('aria-expanded', String(!isOpen));
+			infoToggle.closest('[data-info-nav]')?.classList.toggle('open', !isOpen);
 		});
 	}
 

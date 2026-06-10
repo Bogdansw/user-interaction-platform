@@ -76,7 +76,6 @@ if ($status === 'post_created') {
         <?php endif; ?>
 
         <section class="layout-card intro-panel">
-          <span class="intro-kicker" data-i18n="startKicker">Platforma sociala</span>
           <h2 data-i18n="startTitle">Comunitati, postari si discutii intr-un singur loc</h2>
           <p data-i18n="startBody">
             user-platform este un spatiu unde utilizatorii pot crea comunitati, pot publica postari si pot interactiona prin comentarii, reactii si continut salvat.
