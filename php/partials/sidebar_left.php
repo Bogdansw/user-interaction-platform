@@ -7,14 +7,12 @@ $notification_count = $is_logged_in ? count($messages) : 0;
 $platform = platform_name();
 $brand_logo = brand_logo_path();
 $display_name = $is_logged_in ? ($user['name'] ?? 'User') : 'Oaspete';
-$display_email = $is_logged_in ? ($user['email'] ?? '') : 'Navigare ca oaspete';
 $profile_initials = $is_logged_in ? user_initials($user['name'] ?? 'User', 'US') : 'GU';
+$profile_avatar_url = $is_logged_in ? clean_value($user['avatarUrl'] ?? '') : '';
 $joined_servers = $joined_servers ?? [];
 
 $main_nav = [
   ['key' => 'home', 'href' => 'index.php', 'icon' => 'home', 'label' => 'Home'],
-  ['key' => 'about', 'href' => 'about.php', 'icon' => 'support', 'label' => 'Despre'],
-  ['key' => 'features', 'href' => 'features.php', 'icon' => 'explore', 'label' => 'Functionalitati'],
   ['key' => 'popular', 'href' => 'popular.php', 'icon' => 'popular', 'label' => 'Popular'],
   ['key' => 'explore', 'href' => 'explore.php', 'icon' => 'explore', 'label' => 'Explore'],
   ['key' => 'saved', 'href' => 'saved.php', 'icon' => 'saved', 'label' => 'Saved'],
@@ -27,6 +25,7 @@ $utility_nav = [
   ['key' => 'support', 'href' => 'support.php', 'icon' => 'support', 'label' => 'Support'],
   ['key' => 'settings', 'href' => 'profile.php', 'icon' => 'settings', 'label' => 'Settings'],
 ];
+$info_is_active = in_array($active_page, ['about', 'features'], true);
 ?>
 <aside class="sidebar sidebar-left">
   <div class="sidebar-content">
@@ -98,15 +97,31 @@ $utility_nav = [
             <span data-i18n="<?= htmlspecialchars($item['key']) ?>"><?= htmlspecialchars($item['label']) ?></span>
           </a>
         <?php endforeach; ?>
+        <div class="nav-group<?= $info_is_active ? ' active' : '' ?>" data-info-nav>
+          <button class="nav-item nav-dropdown-toggle<?= $info_is_active ? ' active' : '' ?>" type="button" aria-expanded="<?= $info_is_active ? 'true' : 'false' ?>" data-info-toggle>
+            <?= ui_icon('despre', 18) ?>
+            <span data-i18n="info">Info</span>
+            <span class="nav-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="nav-sublist"<?= $info_is_active ? '' : ' hidden' ?> data-info-menu>
+            <a class="nav-subitem<?= $active_page === 'about' ? ' active' : '' ?>" href="about.php" data-i18n="about">Despre</a>
+            <a class="nav-subitem<?= $active_page === 'features' ? ' active' : '' ?>" href="features.php" data-i18n="features">Functionalitati</a>
+          </div>
+        </div>
       </nav>
     <?php endif; ?>
   </div>
 
   <div class="profile-bar">
-    <div class="profile-avatar"><?= htmlspecialchars($profile_initials) ?></div>
+    <div class="profile-avatar">
+      <?php if ($profile_avatar_url !== ''): ?>
+        <img src="<?= htmlspecialchars($profile_avatar_url) ?>" alt="">
+      <?php else: ?>
+        <?= htmlspecialchars($profile_initials) ?>
+      <?php endif; ?>
+    </div>
     <div class="profile-info">
       <span class="profile-name"><?= htmlspecialchars($display_name) ?></span>
-      <span class="profile-handle"<?= $is_logged_in ? '' : ' data-i18n="guestBrowsing"' ?>><?= htmlspecialchars($display_email) ?></span>
     </div>
     <?php if ($is_logged_in): ?>
       <a class="icon-button" href="logout.php" aria-label="Deconectare">

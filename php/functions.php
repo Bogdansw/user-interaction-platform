@@ -200,6 +200,34 @@ function find_community($community_id) {
 	return null;
 }
 
+function find_user_index($users, $user_id, $email = '') {
+	foreach ($users as $index => $user) {
+		if ($user_id !== '' && (string) ($user['id'] ?? '') === (string) $user_id) {
+			return $index;
+		}
+
+		if ($email !== '' && strtolower((string) ($user['email'] ?? '')) === strtolower((string) $email)) {
+			return $index;
+		}
+	}
+
+	return null;
+}
+
+function is_valid_http_url($url) {
+	$url = clean_value($url);
+	if ($url === '') {
+		return true;
+	}
+
+	if (!filter_var($url, FILTER_VALIDATE_URL)) {
+		return false;
+	}
+
+	$scheme = strtolower((string) parse_url($url, PHP_URL_SCHEME));
+	return in_array($scheme, ['http', 'https'], true);
+}
+
 function find_post_index_by_id($posts, $post_id) {
 	foreach ($posts as $index => $post) {
 		if ((string) ($post['id'] ?? '') === (string) $post_id) {
@@ -354,7 +382,7 @@ function ui_icon($name, $size = 18, $attrs = []) {
 	$allowed = [
 		'home', 'popular', 'explore', 'saved', 'communities', 'search',
 		'notifications', 'support', 'settings', 'sun', 'moon', 'language',
-		'logout', 'like', 'dislike', 'comments', 'new', 'top', 'menu',
+		'logout', 'like', 'dislike', 'comments', 'new', 'top', 'menu', 'despre',
 	];
 	$key = strtolower(trim((string) $name));
 	if (!in_array($key, $allowed, true)) {

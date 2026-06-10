@@ -146,6 +146,69 @@ button {
 	border-bottom: none;
 }
 
+.profile-picture-panel {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding-bottom: 16px;
+	margin-bottom: 8px;
+	border-bottom: 1px solid #252d40;
+}
+
+.profile-avatar-large {
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	background: #4a5568;
+	color: #eef0f8;
+	display: grid;
+	place-items: center;
+	font-size: 22px;
+	font-weight: 700;
+	flex-shrink: 0;
+	overflow: hidden;
+}
+
+.profile-avatar-large img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.profile-picture-form {
+	display: grid;
+	gap: 8px;
+	flex: 1;
+	min-width: 0;
+}
+
+.profile-picture-form label {
+	color: #d4d9ec;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.profile-picture-controls {
+	display: flex;
+	gap: 8px;
+}
+
+.profile-picture-controls input {
+	width: 100%;
+	height: 38px;
+	border: 1px solid #252d40;
+	border-radius: 6px;
+	background: #111722;
+	color: #d4d9ec;
+	padding: 0 12px;
+	font: inherit;
+	outline: none;
+}
+
+.profile-picture-controls input:focus {
+	border-color: #6b7488;
+}
+
 .label {
 	color: #8b92a8;
 	font-size: 13px;
@@ -218,6 +281,20 @@ button {
 
 .muted {
 	color: #8b92a8;
+}
+
+@media (max-width: 640px) {
+	.profile-header,
+	.profile-picture-panel,
+	.profile-picture-controls {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.profile-actions,
+	.profile-picture-controls .btn {
+		width: 100%;
+	}
 }
 
 /* Flat UI pass */

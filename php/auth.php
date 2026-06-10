@@ -30,6 +30,7 @@ if ($action === 'login') {
 		'id' => $user['id'] ?? null,
 		'name' => $user['name'] ?? 'User',
 		'email' => $user['email'] ?? $email,
+		'avatarUrl' => $user['avatarUrl'] ?? '',
 	];
 
 	redirect_with_status('../index.php', 'login_success');
@@ -66,6 +67,7 @@ if ($action === 'register') {
 		'name' => $name,
 		'email' => $email,
 		'password' => password_hash($password, PASSWORD_DEFAULT),
+		'avatarUrl' => '',
 		'createdAt' => date('c'),
 	];
 

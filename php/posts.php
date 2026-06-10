@@ -44,6 +44,7 @@ if ($action === 'create') {
 		'communityIconUrl' => $community['iconUrl'],
 		'authorId' => $user['id'] ?? '',
 		'author' => $user['name'] ?? 'User',
+		'authorAvatarUrl' => $user['avatarUrl'] ?? '',
 		'mediaUrl' => $media_url,
 		'upvotes' => 0,
 		'comments' => 0,
@@ -76,6 +77,7 @@ $posts[$post_index] = array_merge($post, [
 	'community' => $community['name'],
 	'communityColor' => $community['color'],
 	'communityIconUrl' => $community['iconUrl'],
+	'authorAvatarUrl' => $user['avatarUrl'] ?? '',
 	'mediaUrl' => $media_url,
 	'updatedAt' => date('c'),
 ]);

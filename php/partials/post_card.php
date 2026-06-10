@@ -11,6 +11,7 @@ $community = (string) ($post['community'] ?? '');
 $community_color = (string) ($post['communityColor'] ?? '#2e384f');
 $community_icon_url = (string) ($post['communityIconUrl'] ?? '');
 $author = (string) ($post['author'] ?? '');
+$author_avatar_url = clean_value($post['authorAvatarUrl'] ?? '');
 $media_url = (string) ($post['mediaUrl'] ?? '');
 $liked_by = normalize_id_list($post['likedBy'] ?? []);
 $disliked_by = normalize_id_list($post['dislikedBy'] ?? []);
@@ -26,7 +27,7 @@ $has_liked = $current_user_id !== '' && in_array($current_user_id, $liked_by, tr
 $has_disliked = $current_user_id !== '' && in_array($current_user_id, $disliked_by, true);
 $has_saved = $current_user_id !== '' && in_array($current_user_id, $saved_by, true);
 ?>
-<article class="post-card" id="post-<?= htmlspecialchars($post_id) ?>" aria-label="<?= htmlspecialchars($title) ?>" data-upvotes="<?= htmlspecialchars((string) $upvotes) ?>" data-created-at="<?= htmlspecialchars($created_at) ?>">
+<article class="post-card" id="post-<?= htmlspecialchars($post_id) ?>" aria-label="<?= htmlspecialchars($title) ?>" data-post-title="<?= htmlspecialchars(strtolower($title)) ?>" data-upvotes="<?= htmlspecialchars((string) $upvotes) ?>" data-created-at="<?= htmlspecialchars($created_at) ?>">
   <div class="post-meta">
     <span class="community-dot" style="background: <?= htmlspecialchars($community_color) ?>;">
       <?php if ($community_icon_url !== ''): ?>
@@ -86,7 +87,13 @@ $has_saved = $current_user_id !== '' && in_array($current_user_id, $saved_by, tr
       <span class="time-ago"><?= htmlspecialchars(format_time_ago($created_at)) ?></span>
     </div>
     <div class="post-author">
-      <span class="author-avatar"></span>
+      <span class="author-avatar">
+        <?php if ($author_avatar_url !== ''): ?>
+          <img src="<?= htmlspecialchars($author_avatar_url) ?>" alt="">
+        <?php else: ?>
+          <?= htmlspecialchars(user_initials($author, 'US')) ?>
+        <?php endif; ?>
+      </span>
       <span class="author-name"><?= htmlspecialchars($author) ?></span>
     </div>
     <?php if ($is_author && $post_id !== ''): ?>
