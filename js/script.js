@@ -413,7 +413,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			try {
 				localStorage.setItem('preferredTheme', nextTheme);
 			} catch (error) {
-				// The theme still changes for the current page when storage is unavailable.
 			}
 		});
 	}
@@ -441,7 +440,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			try {
 				localStorage.setItem('sidebarCollapsed', String(collapsed));
 			} catch (error) {
-				// The sidebar still changes for the current page when storage is unavailable.
 			}
 		});
 	}
@@ -494,7 +492,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				try {
 					localStorage.setItem('preferredLanguage', lang);
 				} catch (error) {
-					// The language still changes for the current page when storage is unavailable.
 				}
 				applyLanguage(lang);
 				closeMenu();
